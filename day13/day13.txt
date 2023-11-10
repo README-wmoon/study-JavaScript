@@ -1,0 +1,198 @@
+각 팀 팀장님 
+  주말 이번주토요일 
+  09시 ~ 13시
+    시간 정해서 톡방에 남기기
+
+자바스크립트로 서버에서 데이터 받아오기
+
+api
+  함수, 기능 서버로부터 특정 데이터를 받아오기 위해서 만들어놓은 서버쪽의 기능
+  
+api 명세(docs)
+  api(함수 사용법) 설명서
+
+
+데이터를 다룰 때 사용하는 필수 요소
+  Create 추가
+  Update 수정
+  Read   조회
+  Delete 삭제
+
+
+회원정보 추가
+  www.naver.com/create_new_user 
+회원정보 삭제
+  www.naver.com/user_delete_now
+
+
+api를 만들 때 일종의 규칙을 정해서 만들자
+REST api (open api), 형태는 주소 모양으로 만들자
+
+데이터를 추가하는 api라면 
+  post 방법
+데이터를 삭제하는 api라면 
+  delete 방법
+데이터를 조회하는 api라면
+  get 방법 (브라우저 주소창에 입력하면 get 요청)
+데이터를 수정하는 api라면
+  put 방법
+
+회원 user
+  회원정보를 새롭게 추가해주는 api 
+  www.naver.com/user  post방법
+
+  회원정보를 조회해주는 api
+  www.naver.com/user  get 방법
+
+  id가 abc123인 회원정보를 조회해주는 api
+  www.naver.com/user?id=abc123  get 방법
+  www.naver.com/user/abc123     get 방법
+
+
+요청시에 데이터를 전달해야 할 필요가 있다면 
+  데이터는 body 안쪽에 넣어서 전달을 해준다(get방식 을 제외하고)
+{
+  header: 값,
+  body: {},
+}
+
+  get방식은 body 안쪽에 넣어서 전달 할 수 없기 때문에 주소에 데이터를 넣어서 
+  전달해야한다 
+  1. (쿼리 스트링, query-string)
+  방법은 다음과 같다 
+
+기본적인 회원 정보 조회 api 주소가 
+  www.naver.com/user  get 방식
+
+  전달하고싶은 값이 
+  id
+  abc123
+  www.naver.com/user?id=abc123   get요청!
+
+  id : abc123
+  name: 배상엽
+
+  www.naver.com/user?id=abc123&name=배상엽              get요청!
+
+  id : abc123
+  name: 배상엽, 홍길동
+  www.naver.com/user?id=abc123&name=배상엽&name=홍길동        get요청!
+
+
+로그인
+  id: abc123 
+  pw: 1234
+
+  www.naver.com/user     post요청!
+  body:{
+    id:'abc123',
+    pw:'1234'
+  }
+
+  www.naver.com/user?id=abc123&pw=1234 get요청!
+
+2. get방식에서 데이터를 전달 하는 방법 path variable
+id가 abc123인 회원
+  www.naver.com/user?id=abc123  get요청(qeury-string 방법)
+  www.naver.com/user/abc123     get요청(path variable)
+
+기준
+  각각을 유일하게 구분할 수 있으면 pathvariable을 사용하고 
+  유일하게 구분할수 없는 값이라면 query-string을 사용
+
+게시글
+  www.naver.com/board/5 get --> 5번게시글 조회 
+  www.naver.com/board get --> 게시글 전체 조회
+  www.naver.com/board?date=20230807 
+  www.naver.com/board post 
+  www.naver.com/board put
+  www.naver.com/board delete
+
+
+restful api
+  rest 규칙을 잘 지켜서 만든 api
+
+
+응답전문(header와 body)
+  header에는 응답에 대한 정보들(시간, 상태, 응답한데이터의 타입 등등)
+  body에는 실질적으로 원하는 데이터 
+    html
+    글자
+    javascript object(객체) notation -->  json(글자 js object 표기법을 지킨 글자)
+    xml
+
+js에서 요청하기 
+  1. 브라우저 내장 함수 fetch함수를 사용하여 요청 (IE XXX)
+    option객체는 선택사항
+    옵션객체 
+    {
+      method: 'GET' | 'POST' | 'DELETE' | 'PUT',
+      headers: {Content-Type: 값,}, 
+      body: {키:value, 키:value}
+    }
+
+    옵션객체를 사용하지 않으면 header는 자동으로설정, 
+    body 는 없고, method 는 get방식 
+
+    함수실행결과는 ? fetch('www.naver.com/board/5', 옵션객체)
+    함수실행결과는 Promise 타입
+
+    pending상태 : 아직 요청을 했고, 완료되지 않은 상태
+    fulfilled 상태 : 데이터를 성공적으로 받아온 상태 
+    rejected 상태 : 함수사용은 끝났으나 데이터를 받아오지 못한 상태
+
+
+    Promise타입객체 = {
+      [[promiseStatus]]: 'pending' | 'fulfilled' | 'rejected',
+      [[PromiseResult]]: 값,
+
+      catch: 값,
+      then:함수,
+      finally:값
+    }
+
+  2. 외부 라이브러리 (다른 사람이 만든 함수)를 사용하여 요청
+    axios 
+    jquery (ajax)
+
+
+자바스크립트의 해석 과정은 동기적(위에서부터 차례로 수행된다)
+
+코드
+  a;
+  b;
+  fetch('/users/abc123');// 서버에서 데이터를 가져와줘!(비동기함수)
+  d;
+
+비동기 통신(Async)
+
+동기 통신(sync)
+  
+
+  Promise<'배상엽'> --> Promise인데, fulfiiled 상태가 되면 
+                        PromiseResult에 '배상엽' 이 들어있다
+
+  Promise {
+    PromiseStatus:fulfiiled,
+    PromiseResult:'배상엽'
+  }
+
+  Promise<10>{ 
+    status : fulfiiled
+    PromiseResult : 10,
+    then 
+    catch
+    finally
+  }
+  console.log('1');
+  fetch().then((a)=>{return 10}).then(()=>{ });
+  console.log('2');
+
+
+then(함수)
+  then 안에있는 콜백함수는 Promise의 status가 fulfiiled가되면
+  실행되는 함수, 그 함수는 매개변수를 받아오는데 
+  PromiseResult에 있는 값을 매개변수로 전달 받는다
+  콜백함수에 return 이 있다면 
+  return 된 값을 PromsieResult에 담아서 다시 
+  Promise타입이 결과로 나온다 

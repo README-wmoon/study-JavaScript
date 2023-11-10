@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모달 연습</title>
+  <style>
+    .modal-wrapper{
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal{
+      width: 400px;
+      min-height: 300px;
+      max-height: 700px;
+      background-color: white;
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="modalOpen()">클릭!</button>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <h1>내용</h1>
+  <div class="modal-wrapper">
+    <div class="modal">
+      <button onclick="modalClose()">닫기</button>
+      <h1>dfd</h1>
+      <h1>dfd</h1>
+      <h1>dfd</h1>
+      <h1>dfd</h1>
+      <h1>dfd</h1>
+      회원가입이 완료되었습니다
+    </div>
+  </div>
+
+  <script>
+    const modalOpen = ()=>{
+      // 클래스이름이 modal-wrapper인 요소를 객체로 받아오기
+      let modalWrapper = document.querySelector('.modal-wrapper');
+      // css에 display속성값을 flex로 바꿔주기
+      modalWrapper.style.display = 'flex';
+      // body태그를 가져와서
+      let body = document.querySelector('body');
+      // css에 overflow 속성을 hidden으로 바꿔주기
+      body.style.overflow = 'hidden';
+    }
+
+    const modalClose = ()=>{
+      let modalWrapper = document.querySelector('.modal-wrapper');
+      modalWrapper.style.display = 'none';
+
+      let body = document.querySelector('body');
+      body.style.overflow = 'visible';
+    }
+  </script>
+</body>
+</html>

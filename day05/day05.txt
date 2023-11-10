@@ -1,0 +1,101 @@
+함수를정의
+  1. 인자의 갯수와 타입(매개변수로)
+  2. 함수가 어떻게 동작하는지(body안쪽의 코드)
+  3. 함수사용결과가 어떠한 값이 되는지(return)
+
+1.전통적인 방식의 함수
+function 함수이름(매개변수, 매개변수, ...){
+  코드..
+  코드...
+  return 값;
+}
+2. 익명함수를 변수에 담아놓고 사용
+const 변수 = function (매개변수, ...){
+  코드
+  코드
+  코드
+  return 값;
+}
+
+익명함수(이름이 없는 함수)
+  일회성으로 사용하기 위해서 만들어준다
+
+function (매개변수, 매개변수...){
+  코드
+  코드
+  코드
+  return 값;
+}
+
+화살표표현식
+  매개변수가 한개라면 소괄호가 생략 가능하다
+  body 안쪽의 코드가 한줄이라면 중괄호와
+  return이 생략 가능하다
+  a=>console.log(a,'님 안녕하세요')
+
+  (a, b)=>a+b
+  
+  
+(매개변수, 매개변수 ...) => {
+  코드
+  코드
+  코드
+  return 값;
+}
+
+객체 속에 함수가 들어있을 수 있다
+객체는 여러개의 값을 저장하기위해서 사용
+
+DOM(Document Object Model) 객체
+  html의 모든 요소들은 객체이다
+
+<p id="intro" class="aaa world">안녕하세요</p>
+{
+  tagName:'p',
+  text:'안녕하세요',
+  id : 'intro',
+  classList : ['aaa', 'world'],
+  ...
+  ...
+  ...
+  ...
+  ...
+  ...
+}
+
+html 요소를 자바스크립트로 가져오는 함수
+document.getElementById
+  태그의 id 속성값으로 가져오기
+  결과는 객체 하나
+document.getElementsByClassName
+  태그의 class 속성값으로 가져오기 
+  결과는 객체가 요소로 들어있는 배열
+document.getElementsByTagName
+  태그의 이름으로가져오기
+  결과는 객체가 요소로 들어있는 배열
+...
+css 선택자를 통해서 특정 요소를 
+가져오는 함수
+document.querySelector
+  결과가 객체 하나
+document.querySelectorAll
+  결과가 객체가 요소로 들어있는 배열
+
+
+html 요소를 받아오면 결과는 
+HTMLElement 타입이다 中 HTML태그Element 타입이다
+  공통적으로 모든 태그가 갖고있는 속성(key)가 있으며
+  특정 태그에만 존재하는 속성(key)가 있다
+
+  textContent 속성 에는 태그 사이의 내용이 들어간다
+  styles 속성 에는 해당 태그의 css 정보가 객체로 들어있다
+
+
+조건문
+  조건에 따라 서로 다른 코드를 실행시키도록 만들어주는 문법
+
+if(조건식){
+  조건식이 참일때 실행할 코드;
+}else{
+  조건식이 거짓일 때 실행할 코드;
+}

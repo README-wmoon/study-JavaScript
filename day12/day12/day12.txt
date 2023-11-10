@@ -1,0 +1,19 @@
+이벤트가 발생시 특정 코드를 실행시키는 방법
+1. html에다가 on이벤트 라는 속성에 속성값으로 실행시킬 
+함수를 쓰기
+<div onclick = "f()"></div>
+
+2. html의 요소를 객체로 받아와서 자바스크립트에서 직접
+객체의 onclick 속성에다가 함수를 넣어주기
+<div id="box1"></div>
+
+let myDiv = document.querySelector('#box1');
+myDiv.className = 'a';
+myDiv.onclick = f;
+
+3. html요소를 객체로 받아와서 자바스크립트에서 
+직접 addEventListener 함수를 사용하여 추가해준다
+요소.addEventListener('이벤트이름', 함수);
+
+삭제할때는
+요소.removeEventListener('이벤트이름', 함수);

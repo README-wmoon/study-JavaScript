@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>캐러셀</title>
+  <style>
+    .carousel-frame{
+      width: 1000px;
+      /* border: 5px solid black; */
+      margin: 0 auto;
+      /* ??? */
+      overflow: hidden;
+      position: relative;
+    }
+    .left{
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      opacity: 0;
+      transition: 0.5s;
+    }
+    .right{
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      opacity: 0;
+      transition: 0.5s;
+    }
+    .carousel-frame:hover > button{
+      opacity: 1;
+    }
+
+    .carousel-contents{
+      /* border: 5px solid red; */
+      display: flex;
+      
+      transition: 0.2s;
+      
+    }
+
+    .carousel-item{
+      width: 1000px;
+      height: 200px;
+      flex-shrink: 0;
+    }
+    .line{
+      width: 1000px;
+      background-color: silver;
+      /* border: 3px solid silver; */
+      margin: 20px auto;
+      box-sizing: border-box;
+    }
+    .target{
+      width: 200px;
+      border: 3px solid red;
+      transition: 0.3s;
+      /* transform: translateX(800px); */
+    }
+  </style>
+</head>
+<body>
+  <h1>요소 한 개짜리 캐러셀</h1>
+  <div class="carousel-frame">
+    <div class="carousel-contents">
+      <div style="background-color: aqua;" class="carousel-item">1</div>
+      <div style="background-color: beige;" class="carousel-item">2</div>
+      <div style="background-color: aquamarine;" class="carousel-item">3</div>
+      <div style="background-color: goldenrod;" class="carousel-item">4</div>
+      <div style="background-color: violet;" class="carousel-item">5</div>
+      <div style="background-color: aqua;" class="carousel-item">1</div>
+      <div style="background-color: beige;" class="carousel-item">2</div>
+      <div style="background-color: aquamarine;" class="carousel-item">3</div>
+      <div style="background-color: goldenrod;" class="carousel-item">4</div>
+      <div style="background-color: violet;" class="carousel-item">5</div>
+    </div>
+    <button onclick="leftHandler()" class="left"> < </button>
+    <button onclick="rightHandler()" class="right"> > </button>
+  </div>
+  <div class="line">
+    <div class="target"></div>
+  </div>
+  <script>
+    window.onload = ()=>{
+      const line = document.querySelector('.line');
+      const items = document.querySelectorAll('.carousel-item');
+      const target = document.querySelector('.target');
+      target.style.width = `${line.offsetWidth / items.length}px`;
+    }
+    let cnt = 0;
+
+    const leftHandler = ()=>{
+      // 지금 내가보고 있는 그림이 몇번째인지,
+      const line = document.querySelector('.line');
+      const frame = document.querySelector('.carousel-frame');
+      const items = document.querySelectorAll('.carousel-item');
+      if(cnt <= 0){
+        cnt = items.length;
+      }
+      cnt = cnt - 1;
+      const carContents = document.querySelector('.carousel-contents');
+      carContents.style.transform = `translateX(-${cnt*frame.offsetWidth}px)`;
+      const target = document.querySelector('.target');
+      target.style.transform = `translateX(${cnt*(line.offsetWidth/items.length)}px)`;
+    }
+    
+    
+    const rightHandler = ()=>{
+      const line = document.querySelector('.line');
+      const frame = document.querySelector('.carousel-frame');
+      console.log([line]);
+      // 회색 선 전체의 길이 : line.offsetWidth
+      // 한칸의 길이 : 회색선전체길이 / 갯수
+
+
+      const items = document.querySelectorAll('.carousel-item');
+      // items에는 무엇이 들어있다? : 배열
+      // 배열의 요소의 갯수는 ? length 키값에 들어있다
+      if(cnt >= items.length-1){
+        cnt = -1;
+      }
+      cnt = cnt + 1;
+      const carContents = document.querySelector('.carousel-contents');
+      carContents.style.transform = `translateX(-${cnt*frame.offsetWidth}px)`;
+      const target = document.querySelector('.target');
+      target.style.transform = `translateX(${cnt* (line.offsetWidth/items.length)}px)`;
+
+      // target.style.width = `${(cnt + 1)*200}px`;
+    }
+  </script>
+</body>
+</html>

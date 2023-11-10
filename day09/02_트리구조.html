@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>트리구조</title>
+</head>
+<body>
+  <h1 id="a">
+    안녕
+    <span>
+      하세
+    </span>
+    요
+  </h1>
+  <div id="b">
+    글자
+    <h2>반갑습니다</h2>
+    글자
+    <ul>
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+    </ul>
+  </div>
+  <button onclick="f()">클릭하시면 p태그가 div#b 에 추가될거에요</button>
+  <script>
+    const f = ()=>{
+      let newP = document.createElement('p');
+      newP.textContent = '새로만든 p태그 입니다';
+      newP.classList.add('a');
+
+      let parent = document.querySelector('#b');
+      console.log([parent])
+      // parent.appendChild(newP); 해당 태그의 마지막 자식으로
+      // parent.prepend('배상엽'); //해당 태그의 가장 첫자식
+      // (누구를, 어디앞에) 순서
+      // parent.insertBefore(newP, parent.children[0]);
+      // parent.append('홍길동');
+    }
+
+    console.log([document]);
+    let target = document.querySelector('#b');
+    console.log(target.childNodes);
+    console.log(target.children);
+  </script>
+</body>
+</html>

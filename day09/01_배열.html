@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열</title>
+  <style>
+    .plain{
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .err{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="plain xxx">잘못된 값입니다</div>
+  <button onclick="f();">글자색 바꾸기</button>
+
+  <div id="myTarget" class="a b c d e f g h">
+    현재 이 태그의 클래스는 a b c d e f g h 입니다
+  </div>
+  <input type="text" placeholder="삭제할 클래스 이름을 써주세요!" />
+  <button onclick="f2()">클릭하시면 해당 클래스가 삭제됩니다</button>
+  <script>
+    const f2 = ()=>{
+      // 1. input 태그에 입력된 값 가져오기
+      let myInput = document.querySelector('input');
+      
+      // 2. #myTarget div태그 가져와서 
+      //    classList에서 입력된 값 삭제하기
+      let myTargetDiv = document.querySelector('#myTarget');
+      myTargetDiv.classList.remove(myInput.value);
+      // 3. #myTarget div태그 내용물도 변경
+      myTargetDiv.textContent = `현재 이 태그의 클래스는 ${myTargetDiv.className} 입니다`;
+    }
+
+    const f = ()=>{
+      let myDiv = document.querySelector('.plain');
+      console.log([myDiv]);
+      // myDiv.className = 'xxx';
+      myDiv.classList.add('err', 'a', 'b', 'c');
+    }
+
+    let ar = [10, 20, 30];
+    ar.push('배상엽');
+    console.log(ar);
+
+
+  </script>
+</body>
+</html>

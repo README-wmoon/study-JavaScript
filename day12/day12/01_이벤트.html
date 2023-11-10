@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트</title>
+  <style>
+    div{
+      border: 3px solid black;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div onclick="f1(); f2();" id="box1">1</div>
+  <div id="box2">2</div>
+  <div id="box3">3</div>
+  <div id="table">
+    <div id="box4">4</div>
+    <div id="box5">5</div>
+    <div id="box6">6</div>
+  </div>
+  <script>
+    let myDiv = document.querySelector('#table');
+    myDiv.children[1]  = document.createElement('p');
+    console.log([myDiv]);
+
+
+    const f1 = ()=>{
+      console.log('1번div가 클릭되었습니다');
+    }
+
+    const f2 = ()=>{
+      console.log('2번div가 클릭됨');
+    }
+
+    let box1 = document.querySelector('#box1');
+    console.log([box1])
+    box1.onclick = null;
+    // box1.onclick = f2
+    let box2 = document.querySelector('#box2');
+    console.log([box2])
+    box2.onclick = f1;
+    box2.onclick = f2;
+    box2.onclick = null;
+    box2.onclick = ()=>{
+      f1();
+      f2();
+    }
+
+    let box3 = document.querySelector('#box3');
+    box3.addEventListener('click', f1);
+    box3.addEventListener('click', f2);
+    box3.onclick = null;
+    console.log([box3])
+    box3.removeEventListener('click', f2);
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+  <style>
+    .err-txt{
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <p class="em">안녕하세요</p>
+  <p id="intro">DOM 객체를 자바스크립트로 다뤄보기</p>
+  <p class="em">DOM 객체를 받아와서 javascript에서 변환하기</p>
+  <button onclick="buttonClick()">click 하세요</button>
+  
+  <br/>
+  <input id="id" type="text"/>
+  <p id="id-err" class="err-txt">아이디는 필수 입력 값입니다</p>
+  <br/>
+  <button onclick="login()">로그인</button>
+  
+  
+  <script src="./02_dom.js"></script>
+</body>
+</html>

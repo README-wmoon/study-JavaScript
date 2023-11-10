@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button#test{
+      position: fixed;
+      top: 100px;
+      left: 100px;
+    }
+  </style>
+</head>
+<body>
+  <button id="test" onclick="f1()">click me</button>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1 id="target">tttt</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <h1>dddd</h1>
+  <input id="email" type="text"/>
+  <p>필수 입력 값입니다</p>
+  <button onclick="register()">회원가입</button>
+  <script>
+    const register = ()=>{
+      // 이메일이 입력이 되어 있는지 확인
+      let emailReg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+      let emailInput = document.querySelector('#email');
+      console.log(emailInput.value);
+      let emailErrP = document.querySelector('p');
+      if(emailInput.value === ''){
+        emailErrP.textContent = '이메일은 필수 입력 값입니다.';
+        emailErrP.style.color = 'red';
+        emailErrP.style.display = 'block';
+      }else if(emailInput.value.length <= 6){
+        // 6글자 이하일때 실행됨
+        emailInput.value = '';
+        emailInput.focus();
+        emailErrP.textContent = '6글자보다 더 많이 입력해야 합니다.'
+        emailErrP.style.color = 'red';
+        emailErrP.style.display = 'block';
+      }else if(!emailReg.test(emailInput.value)){
+        // 이메일패턴과 사용자가 입력한 패턴이 일치하지 않을 때
+        emailInput.value = '';
+        emailInput.focus();
+        emailErrP.textContent='이메일 양식을 입력해 주세요';
+        emailErrP.style.color = 'red';
+        emailErrP.style.display = 'block';
+      }else{
+        emailErrP.textContent = '멋진 아이디 이네요!';
+        emailErrP.style.color = 'green';
+        emailErrP.style.display = 'block';
+      }
+    }
+
+    const f1 = ()=>{
+      console.log('실행됨');
+      let target = document.querySelector('#target');
+      console.log([target]);
+      scrollTo({left:0, top:target.offsetTop, behavior:"smooth"});
+    }
+    
+  </script>
+</body>
+</html>
